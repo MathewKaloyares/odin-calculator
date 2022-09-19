@@ -63,7 +63,6 @@ const chooseOperation = function (operator){
     if(previousNumber !== '') {
         operate(currentOperand, currentNumber, previousNumber)
     }
-   
     currentOperand = operator
     previousNumber = currentNumber
     currentNumber= ''
@@ -73,8 +72,6 @@ const chooseOperation = function (operator){
 const updateDisplay = function(){
     currentTextElement.innerText = currentNumber
     previousTextElement.innerText = previousNumber
-
-
 }
 
 const add = function(num1, num2){
