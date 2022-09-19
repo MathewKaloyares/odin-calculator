@@ -15,9 +15,10 @@ clearAllButton.addEventListener('click', () => {
     clear()
     updateDisplay()
 })
-deleteButton.addEventListener('click', () => {
-   backSpace()
-   updateDisplay()
+deleteButton.addEventListener('click', (event) => {
+    pressed = false
+    backSpace()
+    updateDisplay()
 })
 
 numberButtons.forEach(numberButton => {
@@ -34,13 +35,20 @@ operatorButtons.forEach(operatorButton => {
 })
 
 equalsButton.addEventListener('click', (event) => {
-    pressed = event
+    pressed = true
     operate(currentOperand, currentNumber, previousNumber)
     updateDisplay()
 
 })
+const clear = function(){
+    currentNumber = ''
+    currentOperand = undefined
+    previousNumber = ''
+    previousOperand = undefined
+}
 const backSpace = function(){
     currentNumber = currentNumber.toString().slice(0, -1)
+
 }
 const appendNumber = function(number){
     if(pressed && currentNumber !== ''){
@@ -55,6 +63,7 @@ const chooseOperation = function (operator){
     if(previousNumber !== '') {
         operate(currentOperand, currentNumber, previousNumber)
     }
+   
     currentOperand = operator
     previousNumber = currentNumber
     currentNumber= ''
@@ -65,7 +74,26 @@ const updateDisplay = function(){
     currentTextElement.innerText = currentNumber
     previousTextElement.innerText = previousNumber
 
+
 }
+
+const add = function(num1, num2){
+    let sum = Number(num1) + Number(num2)
+    return sum
+}
+const subtract = function(num1, num2){
+    let sum = Number(num2) - Number(num1)
+    return sum;
+}
+const multiply = function(num1, num2){
+    let sum = Number(num1) * Number(num2)
+    return sum;
+}
+const divide = function(num1, num2){
+    let sum = Number(num2) / Number(num1)
+    return sum;
+}
+
 const operate = function(operand, num1, num2 ){
     let result;
     if(operand === undefined || num1 === ''){
@@ -91,28 +119,6 @@ const operate = function(operand, num1, num2 ){
     currentOperand = undefined
 }
 
-const clear = function(){
-    currentNumber = ''
-    currentOperand = undefined
-    previousNumber = ''
-    previousOperand = undefined
-}
-const add = function(num1, num2){
-    let sum = Number(num1) + Number(num2)
-    return sum
-}
-const subtract = function(num1, num2){
-    let sum = Number(num2) - Number(num1)
-    return sum;
-}
-const multiply = function(num1, num2){
-    let sum = Number(num1) * Number(num2)
-    return sum;
-}
-const divide = function(num1, num2){
-    let sum = Number(num2) / Number(num1)
-    return sum;
-}
 
 
 
